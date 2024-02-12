@@ -1,5 +1,8 @@
 = Synopsis
-Project templates for varous programming languages / frameworks.
+A hand-built raytracer, following the book "The Ray Tracer Challenge".
+
+= Used libraries
+* Cucumber-rs: https://github.com/cucumber-rs/cucumber
 
 = License 
 Apache (see LICENSE)
