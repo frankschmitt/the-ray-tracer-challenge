@@ -1,0 +1,6 @@
+= Synopsis
+Project templates for varous programming languages / frameworks.
+
+= License 
+Apache (see LICENSE)
+
