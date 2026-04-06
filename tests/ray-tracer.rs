@@ -3,21 +3,21 @@ use cucumber::{given, when, then, World};
 // These `Tuple` definitions would normally be inside your project's code, 
 // not test code, but we create them here for the show case.
 #[derive(Debug, Default)]
-struct Tuple {
+struct TestTuple {
     pub x: f64,
     pub y: f64,
     pub z: f64,
     pub w: f64
 }
 
-impl Tuple {
+impl TestTuple {
 }
 
 // `World` is your shared, likely mutable state.
 // Cucumber constructs it via `Default::default()` for each scenario. 
 #[derive(Debug, Default, World)]
 pub struct RayTracerWorld {
-    tuple: Tuple,
+    tuple: TestTuple,
 }
 
 // Steps are defined with `given`, `when` and `then` attributes.
