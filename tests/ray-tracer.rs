@@ -21,15 +21,6 @@ pub struct RayTracerWorld {
 }
 
 // Steps are defined with `given`, `when` and `then` attributes.
-#[given(regex = r"^Xa tuple\((.)(.)(.)(.).*$")]
-// fn a_tuple(world: &mut RayTracerWorld) {
-fn xa_tuple(world: &mut RayTracerWorld, x: f64, y: f64, z: f64, w: f64) {
-    world.tuple.x = x;
-    world.tuple.y = y;
-    world.tuple.z = z;
-    world.tuple.w = w;
-}
-
 #[given(regex = r"^a tuple\(([-0-9.]+), ([-0-9.]+), ([-0-9.]+), ([-0-9.]+)\)$")]
 fn a_tuple(world: &mut RayTracerWorld, x: f64, y: f64, z: f64, w: f64) {
     world.tuple.x = x;
@@ -37,7 +28,6 @@ fn a_tuple(world: &mut RayTracerWorld, x: f64, y: f64, z: f64, w: f64) {
     world.tuple.z = z;
     world.tuple.w = w;
 }
-
 
 #[then(regex = r"^a.x = ([-0-9.]+)$")]
 fn a_tuples_x(world: &mut RayTracerWorld, x: f64) {
@@ -59,7 +49,17 @@ fn a_tuples_w(world: &mut RayTracerWorld, w: f64) {
   assert!(world.tuple.w == w);
 }
 
-
+#[then(regex = r"^a is a (point|vector)$")]
+fn a_tuples_type(world: &mut RayTracerWorld, t: String) {
+  if (t == "point") {
+    // Points have w = 1
+    assert!(world.tuple.w == 1.0);
+  }
+  else {
+    // Vectors have w = 0
+    assert!(world.tuple.w == 0.0);
+  }
+}
 
 // This runs before everything else, so you can setup things here.
 fn main() {
