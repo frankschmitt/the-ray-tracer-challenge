@@ -1,23 +1,11 @@
 use cucumber::{given, when, then, World};
-
-// These `Tuple` definitions would normally be inside your project's code, 
-// not test code, but we create them here for the show case.
-#[derive(Debug, Default)]
-struct TestTuple {
-    pub x: f64,
-    pub y: f64,
-    pub z: f64,
-    pub w: f64
-}
-
-impl TestTuple {
-}
+use the_ray_tracer_challenge::tuple::*;
 
 // `World` is your shared, likely mutable state.
 // Cucumber constructs it via `Default::default()` for each scenario. 
 #[derive(Debug, Default, World)]
 pub struct RayTracerWorld {
-    tuple: TestTuple,
+    tuple: Tuple,
 }
 
 // Steps are defined with `given`, `when` and `then` attributes.
@@ -76,19 +64,14 @@ fn a_tuples_type_not(world: &mut RayTracerWorld, t: String) {
 // Steps are defined with `given`, `when` and `then` attributes.
 #[given(regex = r"^p ← point\(([-0-9.]+), ([-0-9.]+), ([-0-9.]+)\)$")]
 fn p_point(world: &mut RayTracerWorld, x: f64, y: f64, z: f64) {
-    world.tuple.x = x;
-    world.tuple.y = y;
-    world.tuple.z = z;
-    world.tuple.w = 1.0;
+  world.tuple = point(x,y,z);
 }
+
 
 // Steps are defined with `given`, `when` and `then` attributes.
 #[given(regex = r"^v ← vector\(([-0-9.]+), ([-0-9.]+), ([-0-9.]+)\)$")]
 fn v_vector(world: &mut RayTracerWorld, x: f64, y: f64, z: f64) {
-    world.tuple.x = x;
-    world.tuple.y = y;
-    world.tuple.z = z;
-    world.tuple.w = 0.0;
+  world.tuple = vector(x,y,z);
 }
 
 #[then(regex = r"^p = tuple\(([-0-9.]+), ([-0-9.]+), ([-0-9.]+), ([-0-9.]+)\)$")]
