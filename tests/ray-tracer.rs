@@ -21,16 +21,21 @@ pub struct RayTracerWorld {
 }
 
 // Steps are defined with `given`, `when` and `then` attributes.
-// #[given(regex = r"^a tuple\(([-0-9.]+), ([-0-9.]+), ([-0-9.]+), ([-0.9.]+)\)$")]
-// fn a_tuple(world: &mut RayTracerWorld, x: f64, y: f64, z: f64, w: f64) {
-#[given(regex = r"^a tuple.*$")]
-fn a_tuple(world: &mut RayTracerWorld) {
-/*    world.tuple.x = x;
+//#[given(regex = r"^a tuple\(([-0-9.]+), ([-0-9.]+), ([-0-9.]+), ([-0.9.]+)\)$")]
+#[given(regex = r"^Xa tuple\((.)(.)(.)(.).*$")]
+// fn a_tuple(world: &mut RayTracerWorld) {
+fn xa_tuple(world: &mut RayTracerWorld, x: f64, y: f64, z: f64, w: f64) {
+    world.tuple.x = x;
     world.tuple.y = y;
     world.tuple.z = z;
     world.tuple.w = w;
-    */
 }
+
+#[given(regex = r"^a tuple\(([-0-9.]+).*$")]
+fn a_tuple(world: &mut RayTracerWorld, x: f64) {
+    world.tuple.x = x;
+}
+
 
 #[then(regex = r"^a.x = ([-0-9.]+)$")]
 fn a_tuples_x(world: &mut RayTracerWorld, x: f64) {
