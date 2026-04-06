@@ -21,7 +21,7 @@ pub struct RayTracerWorld {
 }
 
 // Steps are defined with `given`, `when` and `then` attributes.
-#[given(regex = r"^a tuple\(([-0-9.]+), ([-0-9.]+), ([-0-9.]+), ([-0-9.]+)\)$")]
+#[given(regex = r"^a ← tuple\(([-0-9.]+), ([-0-9.]+), ([-0-9.]+), ([-0-9.]+)\)$")]
 fn a_tuple(world: &mut RayTracerWorld, x: f64, y: f64, z: f64, w: f64) {
     world.tuple.x = x;
     world.tuple.y = y;
@@ -73,6 +73,39 @@ fn a_tuples_type_not(world: &mut RayTracerWorld, t: String) {
   }
 }
 
+// Steps are defined with `given`, `when` and `then` attributes.
+#[given(regex = r"^p ← point\(([-0-9.]+), ([-0-9.]+), ([-0-9.]+)\)$")]
+fn p_point(world: &mut RayTracerWorld, x: f64, y: f64, z: f64) {
+    world.tuple.x = x;
+    world.tuple.y = y;
+    world.tuple.z = z;
+    world.tuple.w = 1.0;
+}
+
+// Steps are defined with `given`, `when` and `then` attributes.
+#[given(regex = r"^v ← vector\(([-0-9.]+), ([-0-9.]+), ([-0-9.]+)\)$")]
+fn v_vector(world: &mut RayTracerWorld, x: f64, y: f64, z: f64) {
+    world.tuple.x = x;
+    world.tuple.y = y;
+    world.tuple.z = z;
+    world.tuple.w = 0.0;
+}
+
+#[then(regex = r"^p = tuple\(([-0-9.]+), ([-0-9.]+), ([-0-9.]+), ([-0-9.]+)\)$")]
+fn p_is_a_tuple(world: &mut RayTracerWorld, x: f64, y: f64, z: f64, w: f64) {
+    assert!(world.tuple.x == x);
+    assert!(world.tuple.y == y);
+    assert!(world.tuple.z == z);
+    assert!(world.tuple.w == w);
+}
+
+#[then(regex = r"^v = tuple\(([-0-9.]+), ([-0-9.]+), ([-0-9.]+), ([-0-9.]+)\)$")]
+fn v_is_a_tuple(world: &mut RayTracerWorld, x: f64, y: f64, z: f64, w: f64) {
+    assert!(world.tuple.x == x);
+    assert!(world.tuple.y == y);
+    assert!(world.tuple.z == z);
+    assert!(world.tuple.w == w);
+}
 
 // This runs before everything else, so you can setup things here.
 fn main() {
