@@ -7,6 +7,11 @@ A hand-built raytracer, following the book "The Ray Tracer Challenge".
 == License 
 Apache (see LICENSE)
 
+== Conventions
+* Vectors and points have the format (x, y, z, w)
+* w indicates whether it's a point (w = 1) or vector (w = 0)
+
+
 
 == Running
 

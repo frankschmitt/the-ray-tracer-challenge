@@ -61,6 +61,19 @@ fn a_tuples_type(world: &mut RayTracerWorld, t: String) {
   }
 }
 
+#[then(regex = r"^a is not a (point|vector)$")]
+fn a_tuples_type_not(world: &mut RayTracerWorld, t: String) {
+  if (t == "point") {
+    // Points have w = 1
+    assert!(world.tuple.w != 1.0);
+  }
+  else {
+    // Vectors have w = 0
+    assert!(world.tuple.w != 0.0);
+  }
+}
+
+
 // This runs before everything else, so you can setup things here.
 fn main() {
     // You may choose any executor you like (`tokio`, `async-std`, etc.).
